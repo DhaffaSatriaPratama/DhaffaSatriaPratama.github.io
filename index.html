@@ -283,3 +283,84 @@
     </div>
 </body>
 </html>
+<!-- contact -->
+<section id="contact">
+    <div class="container">
+      <div class="row text-center mb-3 justify-content-center">
+        <div class="col">
+          <h2>contact me</h2>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="alert alert-primary alert-dismissible fade show d-none my-alert" role="alert">
+               <strong>Terima Kasih!</strong> Pesan Anda Sudah Kami Terima.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <form name="contact-form">
+              <div class="mb-3">
+                <label for="name" class="form-label">Nama Lengkap</label>
+                <input type="text" class="form-control" id="name" aria-describedby="name" name="nama">
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" aria-describedby="email" name="email">
+              </div>
+              <div class="mb-3">
+                <label for="pesan" class="form-label">pesan</label>
+                <textarea class="form-control" id="pesan" rows="3" name="pesan"></textarea>
+              </div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-Submit">Submit</button>
+              <button class="btn btn-primary btn-Loading d-none" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                <span role="status">Loading...</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0d6efd" fill-opacity="1" d="M0,96L26.7,133.3C53.3,171,107,245,160,266.7C213.3,288,267,256,320,234.7C373.3,213,427,203,480,192C533.3,181,587,171,640,186.7C693.3,203,747,245,800,240C853.3,235,907,181,960,144C1013.3,107,1067,85,1120,74.7C1173.3,64,1227,64,1280,74.7C1333.3,85,1387,107,1413,117.3L1440,128L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z"></path></svg>
+  </section>
+  <!-- akhir contact -->
+
+  <!-- footer -->
+  <footer class="bg-primary text-center pb-5">
+    <p>Created by <i class="bi bi-heart-fill text-danger"></i> by <a href="https://www.instagram.com/_daffasp/" class="text-white fw-bold">Dhaffa Satria Pratama</a></p>
+  </footer>
+  <!-- akhir footer -->
+
+  <!-- ikon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+  <!-- akhir ikon -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbx4aBsWb68V9htgLF0qeVtfAs6nDvEEoE2HarKESA7Da0pTA4xxbFrFlQ1G1_WGk6YSOw/exec'
+    const form = document.forms['contact-form']
+    const btnSubmit =document.querySelector('.btn-Submit');
+    const btnLoading =document.querySelector('.btn-Loading');
+    const myAlert =document.querySelector('.my-alert');
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      // ketika tombol submit diklik
+      // tampilkan tombol loading, hilangkan tombol submit
+      btnLoading.classList.toggle('d-none');
+      btnSubmit.classList.toggle('d-none');
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            // tampilkan tombol submit, hilangkan tombol loading
+          btnLoading.classList.toggle('d-none');
+      btnSubmit.classList.toggle('d-none');
+      // tampilkan alert
+      myAlert.classList.toggle('d-none');
+      // reset formnya
+      form.reset();
+          console.log('Success!', response)
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+</body>
+</html>
